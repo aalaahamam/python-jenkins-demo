@@ -8,7 +8,7 @@ node {
         echo "Running script: ${scriptName}"
 
         bat """
-C:\Users\AIS\AppData\Local\Programs\Python\Python310\python.exe                """
+C:/Users/AIS/AppData/Local/Programs/Python/Python310/python.exe                """
         
     }
 
