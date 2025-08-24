@@ -1,0 +1,27 @@
+node {
+    stage('Checkout Code') {
+        checkout scm
+    }
+
+    stage('Run Python Script') {
+        def scriptName = "simple_calculator.py"    
+        echo "Running script: ${scriptName}"
+
+        bat """
+C:\Users\AIS\AppData\Local\Programs\Python\Python310\python.exe                """
+        
+    }
+
+    stage('Parallel Example') {
+        parallel (
+            "Task 1": {
+                echo "Running Task 1 in parallel..."
+                bat "ping 127.0.0.1 -n 5 > nul"
+            },
+            "Task 2": {
+                echo "Running Task 2 in parallel..."
+                bat "ping 127.0.0.1 -n 5 > nul"
+            }
+        )
+    }
+}
