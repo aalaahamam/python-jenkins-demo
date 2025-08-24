@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'SCRIPT_NAME', defaultValue: 'python.py', description: ' calculate ')
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Run Python Script') {
+            steps {
+                echo "Running script: ${params.SCRIPT_NAME}"
+                bat """
+                    C:\Users\AIS\AppData\Local\Programs\Python\Python310\python.exe  
+                    """
+            }
+        }
+
+        stage('Parallel Example') {
+            parallel {
+                stage('Task 1') {
+                    steps {
+                        echo 'Running Task 1 in parallel...'
+                    }
+                }
+                stage('Task 2') {
+                    steps {
+                        echo 'Running Task 2 in parallel...'
+                    }
+                }
+            }
+        }
+    }
+}
